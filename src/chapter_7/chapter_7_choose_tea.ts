@@ -1,7 +1,9 @@
 import { haveAdventures } from "../..";
 import { askQuestion, clear, print } from "../ui/console";
+import { parseTeaInput } from "../ui/parse_input";
+import { endAdventure } from "../..";
 
-const TEAS = [
+export const TEAS = [
   "Darjeeling",
   "Earl Grey",
   "Camomile",
@@ -9,7 +11,7 @@ const TEAS = [
   "Tetley",
 ] as const;
 
-type Tea = (typeof TEAS)[number];
+export type Tea = (typeof TEAS)[number];
 
 //object stores guest name and tea preferences
 interface Guests {
@@ -45,8 +47,16 @@ export function chooseTea() {
 
 function helpHatter(input: string) {
   clear(true);
-  const chosenTea = parseInt(input);
-  print(`You chose ${TEAS[chosenTea]} tea`);
+
+  //validate input returns chosen tea or defined
+  const chosenTea = parseTeaInput(input);
+
+  if (chosenTea === undefined) {
+    print(`😮`);
+    print(`${input} is an invalid input 😭`);
+    return endAdventure();
+  }
+  print(`You chose ${chosenTea} tea`);
 
   //check all guests like the tea choice
   let teaCheck = checkTeaChoice(guests, chosenTea);
@@ -69,7 +79,7 @@ function helpHatter(input: string) {
           : `${result} and ${name}`
       );
       print(`🤔 ${notLike} do not like your choice of tea! 🤔`);
-      print("Try choosing a tea with a hint of state");
+      print("Try choosing a tea with a hint of state 🧐🧐");
     }
 
     return askQuestion("Press enter to choose again", chooseTea);
@@ -77,10 +87,10 @@ function helpHatter(input: string) {
 }
 
 //returns an array of guest names that don't like the chosen tea
-function checkTeaChoice(guests: Guests[], chosenTea: number) {
+function checkTeaChoice(guests: Guests[], chosenTea: Tea) {
   let badChoiceCount: string[] = [];
   guests.forEach((guest) => {
-    if (!guest.tea.includes(TEAS[chosenTea]))
+    if (!guest.tea.includes(chosenTea))
       badChoiceCount = [...badChoiceCount, guest.name];
   });
   return badChoiceCount;
