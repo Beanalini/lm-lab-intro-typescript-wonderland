@@ -44,12 +44,34 @@ export function chooseTea() {
 }
 
 function helpHatter(input: string) {
+  clear(true);
   const chosenTea = parseInt(input);
   print(`You chose ${TEAS[chosenTea]} tea`);
 
   //check all guests like the tea choice
   let teaCheck = checkTeaChoice(guests, chosenTea);
-  print(`${teaCheck} don't like your choice`);
+  if (teaCheck.length === 0) {
+    print("Mad Hatter is jumping with joy");
+    print("All his guests approve your choice!");
+    print("He rewards you with a bottle of Wake-up potion");
+    print("Congratulations! Time to leave Wonderland.....");
+    return askQuestion("press ENTER to re-enter Wonderland", haveAdventures);
+  } else {
+    print("Mad Hatter is fuming with anger");
+    if (teaCheck.length === 1) {
+      print(`${teaCheck} does not like your choice of tea!`);
+    } else {
+      let notLike = teaCheck.reduce((result, name, index) =>
+        teaCheck.length !== index + 1
+          ? `${result}, ${name}`
+          : `${result} and ${name}`
+      );
+      print(`${notLike} do not like your choice of tea!`);
+      print("Try choosing a tea with a hint of state");
+    }
+
+    return askQuestion("Press enter to choose again", chooseTea);
+  }
 }
 
 //returns an array of guest names that don't like the chosen tea
