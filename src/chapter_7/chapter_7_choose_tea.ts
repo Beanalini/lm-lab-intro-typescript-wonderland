@@ -46,4 +46,18 @@ export function chooseTea() {
 function helpHatter(input: string) {
   const chosenTea = parseInt(input);
   print(`You chose ${TEAS[chosenTea]} tea`);
+
+  //check all guests like the tea choice
+  let teaCheck = checkTeaChoice(guests, chosenTea);
+  print(`${teaCheck} don't like your choice`);
+}
+
+//returns an array of guest names that don't like the chosen tea
+function checkTeaChoice(guests: Guests[], chosenTea: number) {
+  let badChoiceCount: string[] = [];
+  guests.forEach((guest) => {
+    if (!guest.tea.includes(TEAS[chosenTea]))
+      badChoiceCount = [...badChoiceCount, guest.name];
+  });
+  return badChoiceCount;
 }
