@@ -40,4 +40,10 @@ export function chooseTea() {
   clear(true);
   print("The Mad Hatter's choice of Teas:");
   TEAS.forEach((tea, index) => print(`(${index})  ${tea}`));
+  askQuestion("Which tea will you choose? Enter a number", helpHatter);
+}
+
+function helpHatter(input: string) {
+  const chosenTea = parseInt(input);
+  print(`You chose ${TEAS[chosenTea]} tea`);
 }
