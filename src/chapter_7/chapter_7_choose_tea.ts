@@ -11,6 +11,31 @@ const TEAS = [
 
 type Tea = (typeof TEAS)[number];
 
+//object stores guest name and tea preferences
+interface Guests {
+  name: string;
+  tea: Tea[];
+}
+
+const guests: Guests[] = [
+  {
+    name: "Cheshire Cat",
+    tea: ["Earl Grey", "Ginger"],
+  },
+  {
+    name: "White Rabbit",
+    tea: ["Tetley", "Ginger", "Earl Grey"],
+  },
+  {
+    name: "Queen of Hearts",
+    tea: ["Darjeeling", "Ginger", "Earl Grey", "Camomile"],
+  },
+  {
+    name: "Caterpillar",
+    tea: ["Tetley", "Ginger", "Earl Grey"],
+  },
+];
+
 export function chooseTea() {
   clear(true);
   print("The Mad Hatter's choice of Teas:");
