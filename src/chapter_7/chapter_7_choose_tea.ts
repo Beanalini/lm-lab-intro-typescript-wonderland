@@ -12,5 +12,7 @@ const TEAS = [
 type Tea = (typeof TEAS)[number];
 
 export function chooseTea() {
-  print("Chapter 7");
+  clear(true);
+  print("The Mad Hatter's choice of Teas:");
+  TEAS.forEach((tea, index) => print(`(${index})  ${tea}`));
 }
