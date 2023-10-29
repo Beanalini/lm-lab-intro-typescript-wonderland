@@ -42,7 +42,7 @@ export function wakeUp(): void {
 
     print("Looking rather flustered he bellows...🎩😤");
     print(
-      "...I need your help! I can't decide which type of tea to choose for my next tea party!'"
+      "'I need your help! I can't decide which type of tea to choose for my next tea party!'"
     );
     return askQuestion("Press ENTER to help Mad Hatter🎩🎩🎩", chooseTea);
 

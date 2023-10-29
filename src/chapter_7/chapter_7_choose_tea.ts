@@ -38,7 +38,7 @@ const guests: Guests[] = [
 
 export function chooseTea() {
   clear(true);
-  print("The Mad Hatter's choice of Teas:");
+  print("Teas to choose from:");
   TEAS.forEach((tea, index) => print(`(${index})  ${tea}`));
   askQuestion("Which tea will you choose? Enter a number", helpHatter);
 }
@@ -50,23 +50,25 @@ function helpHatter(input: string) {
 
   //check all guests like the tea choice
   let teaCheck = checkTeaChoice(guests, chosenTea);
+
   if (teaCheck.length === 0) {
-    print("Mad Hatter is jumping with joy");
-    print("All his guests approve your choice!");
-    print("He rewards you with a bottle of Wake-up potion");
-    print("Congratulations! Time to leave Wonderland.....");
-    return askQuestion("press ENTER to re-enter Wonderland", haveAdventures);
+    print("😁😁 Mad Hatter is jumping with joy 😁😁");
+    print("👍👍All his guests approve your choice!👍👍");
+    print("He rewards you with a bottle of Wake-up potion 🧪🧪");
+    print("🌟🌟Congratulations! 🌟🌟 ");
+    print("Time to leave Wonderland...");
+    return askQuestion("Press ENTER to re-enter Wonderland", haveAdventures);
   } else {
-    print("Mad Hatter is fuming with anger");
+    print("😡😡 Mad Hatter is fuming with anger!!!😡😡");
     if (teaCheck.length === 1) {
-      print(`${teaCheck} does not like your choice of tea!`);
+      print(`🤔 ${teaCheck} does not like your choice of tea! 🤔`);
     } else {
       let notLike = teaCheck.reduce((result, name, index) =>
         teaCheck.length !== index + 1
           ? `${result}, ${name}`
           : `${result} and ${name}`
       );
-      print(`${notLike} do not like your choice of tea!`);
+      print(`🤔 ${notLike} do not like your choice of tea! 🤔`);
       print("Try choosing a tea with a hint of state");
     }
 
