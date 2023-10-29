@@ -1,5 +1,6 @@
 import { endAdventure, haveAdventures } from "../..";
 import { askQuestion, clear, print } from "../ui/console";
+import { chooseTea } from "../chapter_7/chapter_7_choose_tea";
 
 // ⚠️ This is a very unusual type setup. It's not a great idea in the real world
 // to nest so many properties with the exact same name.
@@ -31,10 +32,23 @@ export function wakeUp(): void {
     print("You have awoken in your bed 🛏 What a lovely dream.");
     print("Although...❓❓❓");
     print("What are these tarts doing here?! 🥧🥧🥧🥧🥧🥧 🤔");
-
     print(
-      "✅ CONGRATULATIONS! You successfully made it through Wonderland! 🥳"
+      "🫖 🫖 🫖 Is that a red tea pot hurtling through the air towards you!? 🫖 🫖 🫖"
     );
+    print("🎡 🎡 You're Still in Wonderland...🎡 🎡");
+    print(
+      "🎩🫖 The Mad Hatter suddenly appears waving a teapot up and down🎩🫖"
+    );
+
+    print("Looking rather flustered he bellows...🎩😤");
+    print(
+      "...I need your help! I can't decide which type of tea to choose for my next tea party!'"
+    );
+    return askQuestion("Press ENTER to help Mad Hatter🎩🎩🎩", chooseTea);
+
+    // print(
+    //   "✅ CONGRATULATIONS! You successfully made it through Wonderland! 🥳"
+    // );
 
     return askQuestion("Press ENTER to re-enter Wonderland! ", haveAdventures);
   } else {
